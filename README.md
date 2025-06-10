@@ -29,6 +29,9 @@ Insights Uncovered
 - East and West regions had the highest revenue
 - Some customers showed negative profit margin (potential refund or loss areas)
 
+--->  VBA Code is used to sort Order Date and Ship Date columns in Microsoft 2019 version of Excel as it doesn't have an inbuilt funcion to conver date format 
+
+
 
 
  Tools Used
