@@ -1,0 +1,33 @@
+VBA Code used to sort Order Date and Ship Date columns as I have used Microsoft 2019 version of Excel
+
+
+Sub FixMixedDateFormats()
+    Dim rng As Range
+    Dim cell As Range
+    Dim parsedDate As Date
+    Dim textVal As String
+
+    ' Change this to your actual data range
+    Set rng = ThisWorkbook.Sheets(1).Range("C2:C10000")
+
+    For Each cell In rng
+        If Not IsEmpty(cell.Value) Then
+            On Error Resume Next
+            textVal = Trim(cell.Value)
+            
+            ' Attempt to replace different separators and parse
+            textVal = Replace(textVal, ".", "/")
+            textVal = Replace(textVal, "-", "/")
+
+            ' Try parsing date
+            parsedDate = CDate(textVal)
+            If Err.Number = 0 Then
+                cell.Value = Format(parsedDate, "dd-mm-yyyy")
+            End If
+            Err.Clear
+            On Error GoTo 0
+        End If
+    Next cell
+
+    MsgBox "Date normalization complete!"
+End Sub
